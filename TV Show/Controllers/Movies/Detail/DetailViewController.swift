@@ -7,23 +7,37 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: BaseViewController {
+    @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var ratinglabel: UILabel!
+    @IBOutlet weak var overviewLabel: UILabel!
+    
+    let moviesViewModel = MoviesViewModel()
+    let detailViewModel = DetailViewModel()
 
+    var viewModel = DetailViewModel()
+    
+    var realeaseDate: String = ""
+    var rating: Float = 0
+    var overview: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupData()
+        setupUI()
 
-        // Do any additional setup after loading the view.
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func setupData() {
+        
     }
-    */
-
+    override func setupUI() {
+        super.setupUI()
+        
+        self.title = viewModel.movieDetail?.title
+        releaseDateLabel?.text = viewModel.movieDetail?.releaseDate
+        ratinglabel?.text = String(describing: viewModel.movieDetail?.imdb) + "/10.0"
+        overviewLabel?.text = viewModel.movieDetail?.overview
+    }
+    @IBAction func reminder(_ sender: Any) {
+    }
+    
 }

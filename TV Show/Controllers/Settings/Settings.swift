@@ -7,11 +7,11 @@
 
 import UIKit
 
-class Settings: UIViewController {
+class Settings: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        title = "Settings"
         // Do any additional setup after loading the view.
     }
 

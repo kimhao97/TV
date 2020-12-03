@@ -6,3 +6,22 @@
 //
 
 import Foundation
+import UIKit
+
+class BaseViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupData()
+        setupUI()
+    }
+    
+    //setup UI
+    func setupUI(){
+        
+    }
+    
+    //setup data
+    func setupData() {
+        
+    }
+}

@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+enum APIError {
+    case error(String)
+    case erroURL
+    
+    var localizedDescription: String {
+        switch self {
+        case .error(let string):
+            return string
+        case .erroURL:
+            return "URL string is error"
+        }
+    }
+}
