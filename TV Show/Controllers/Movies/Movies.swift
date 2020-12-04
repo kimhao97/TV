@@ -6,15 +6,29 @@
 //
 
 import UIKit
+import RealmSwift
 
 class Movies: BaseViewController {
-    var viewModel = MoviesViewModel()
+    let viewModel = MoviesViewModel()
+//    let favoriteViewModel = FavoritesViewModel()
+//    let favorite = Favorites()
+//    let movieCell = MovieCell()
     
     @IBOutlet weak var tableview: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+    }
+    override func setupData() {
+//        viewModel.deleteAllFavorite() { (done, msg) in
+//            if done {
+//                print("Deleted")
+//            } else {
+//                print(msg)
+//            }
+//        }
     }
     override func setupUI() {
         super.setupUI()
@@ -25,6 +39,7 @@ class Movies: BaseViewController {
         tableview.delegate = self
         tableview.dataSource = self
         
+//        FavoritesViewModel.shared().dataSource = self
         
         //cell
         let nib = UINib(nibName: "MovieCell", bundle: .main)
@@ -39,14 +54,16 @@ class Movies: BaseViewController {
         viewModel.loadAPI() { (done, msg) in
             if done {
                 self.updateUI()
+//                MovieCellModel.shared().favoriteList = self.viewModel.movies
             } else {
                 print("API error: \(msg)")
             }
         }
     }
+    
 }
 
-extension Movies: UITableViewDelegate, UITableViewDataSource {
+extension Movies: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.movies.count
     }
@@ -56,22 +73,29 @@ extension Movies: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableview.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MovieCell
         let item = viewModel.movies[indexPath.row]
-        cell.titleLabel.text = item.title
-        cell.releaseDateLabel.text = item.releaseDate
-        cell.overviewLabel.text = item.overview
-        cell.ratingLabel.text = "\(item.rating)"
-        if item.posterImage != nil {
-            cell.posterImage.image = item.posterImage
-        } else {
-            cell.posterImage.image = item.posterImage
-            Networking.shared().download(url: "http://image.tmdb.org/t/p/w185/\(item.posterpath)") { (image) in
-                print("PosterPath: \(item.posterpath)")
-                if let image = image {
-                    cell.posterImage.image = image
-                    item.posterImage = image
-                } else {
-                    cell.posterImage.image = nil
-                }
+        cell.binding(with: MovieCellModel(movie: item))
+        
+//        if item.posterImage != nil {
+//            cell.posterImage.image = item.posterImage
+//        } else {
+//            cell.posterImage.image = item.posterImage
+//            Networking.shared().download(url: "http://image.tmdb.org/t/p/w185/" + item.posterpath) { (image) in
+//                print("PosterPath: \(item.posterpath)")
+//                if let image = image {
+//                    cell.posterImage.image = image
+//                    item.posterImage = image
+//                } else {
+//                    cell.posterImage.image = nil
+//                }
+//            }
+//        }
+
+        //MARK: -favorite button
+        cell.cellAction = { (butStatus) in
+            if butStatus {
+                self.viewModel.addFavorite(movie: item)
+            } else {
+                self.viewModel.deleteItem(movie: item)
             }
         }
         return cell
@@ -87,5 +111,9 @@ extension Movies: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+//    func getData() -> [Movie] {
+//        print("fetchData")
+//        return nil
+//    }
     
 }

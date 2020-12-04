@@ -76,13 +76,14 @@
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <state key="normal" image="star" catalog="system"/>
                         <connections>
-                            <action selector="favoriteButtom:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Bn0-33-fO1"/>
+                            <action selector="favoriteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Oas-QQ-6LT"/>
                         </connections>
                     </button>
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="favoriteButton" destination="AgV-Vu-6CS" id="qRI-mi-OHQ"/>
                 <outlet property="overviewLabel" destination="VAy-Hf-EYX" id="d9e-NO-abf"/>
                 <outlet property="posterImage" destination="Ba9-Hz-Hd7" id="Jdm-ZN-4vA"/>
                 <outlet property="ratingLabel" destination="cDp-cf-lVI" id="nz9-cv-joA"/>

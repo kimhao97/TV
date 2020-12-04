@@ -34,7 +34,7 @@ class DetailViewController: BaseViewController {
         
         self.title = viewModel.movieDetail?.title
         releaseDateLabel?.text = viewModel.movieDetail?.releaseDate
-        ratinglabel?.text = String(describing: viewModel.movieDetail?.imdb) + "/10.0"
+        ratinglabel?.text = viewModel.movieDetail!.imdb + "/10.0"
         overviewLabel?.text = viewModel.movieDetail?.overview
     }
     @IBAction func reminder(_ sender: Any) {

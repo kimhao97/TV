@@ -63,14 +63,12 @@ final class Networking {
         let task = session.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
                 if let _ = error {
-                    print("2")
                     completion(nil)
                 } else {
                     if let data = data {
                         let image = UIImage(data: data)
                         completion(image)
                     } else {
-                        print("3")
                         completion(nil)
                     }
                 }
