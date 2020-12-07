@@ -14,6 +14,9 @@ import RealmSwift
 class FavoritesViewModel {
     var favorites: [Favorite] = []
     
+    init() {
+        
+    }
     func fetchData(completion: Completion) {
         do {
             let realm = try! Realm()

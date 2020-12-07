@@ -7,6 +7,7 @@ target 'TV Show' do
 
   # Pods for TV Show
   pod 'RealmSwift'
+  pod 'SideMenu'
 
   target 'TV ShowTests' do
     inherit! :search_paths

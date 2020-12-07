@@ -7,19 +7,17 @@
 
 import UIKit
 import RealmSwift
+import SideMenu
 
 class Movies: BaseViewController {
     let viewModel = MoviesViewModel()
-//    let favoriteViewModel = FavoritesViewModel()
-//    let favorite = Favorites()
-//    let movieCell = MovieCell()
+    var menu: SideMenuNavigationController?
     
     @IBOutlet weak var tableview: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
+    
     }
     override func setupData() {
 //        viewModel.deleteAllFavorite() { (done, msg) in
@@ -34,33 +32,49 @@ class Movies: BaseViewController {
         super.setupUI()
         //title
         self.title = "Movies"
-        
-        //table
+                
+        //MARK: -table
         tableview.delegate = self
         tableview.dataSource = self
-        
-//        FavoritesViewModel.shared().dataSource = self
         
         //cell
         let nib = UINib(nibName: "MovieCell", bundle: .main)
         tableview.register(nib, forCellReuseIdentifier: "cell")
         
         loadAPI()
+        
+        //MARK: -side bar
+        let menuLeft  = UIBarButtonItem(image: UIImage(named: "ic-menu"), style: .plain, target: self, action: #selector(menuAction))
+        navigationItem.leftBarButtonItem = menuLeft
+        
+        //side menu
+        menu = SideMenuNavigationController(rootViewController: UserViewController())
+        menu?.leftSide = true
+        menu?.menuWidth = CGFloat(UIScreen.main.bounds.width * 4/5)
+        
+//        SideMenuManager.default.leftMenuNavigationController = menu
+//        SideMenuManager.default.addPanGestureToPresent(toView: self.menu)
+        
+
     }
+    
     func updateUI() -> Void {
         tableview.reloadData()
     }
+    
     func loadAPI() -> Void {
         viewModel.loadAPI() { (done, msg) in
             if done {
                 self.updateUI()
-//                MovieCellModel.shared().favoriteList = self.viewModel.movies
             } else {
                 print("API error: \(msg)")
             }
         }
     }
-    
+    //MARK: -Menu action
+    @objc func menuAction() {
+        present(menu!, animated: true)
+    }
 }
 
 extension Movies: UITableViewDelegate, UITableViewDataSource{

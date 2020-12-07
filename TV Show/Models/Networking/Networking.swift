@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+
 final class Networking {
     //singleton design pattern
     private static var sharedNetworking: Networking = {
@@ -76,4 +77,11 @@ final class Networking {
         }
         task.resume()
     }
+    
+//    //MARK: -Realm
+//    
+//    //fetch data
+//    func fetchDataRealm() {
+//
+//    }
 }

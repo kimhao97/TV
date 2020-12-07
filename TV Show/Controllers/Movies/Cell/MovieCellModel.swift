@@ -66,7 +66,7 @@ class MovieCellModel {
     
     func getFavoriteImage() -> UIImage {
         let realm = try! Realm()
-        
+        print(Realm.Configuration.defaultConfiguration.fileURL)
         let result = realm.objects(Favorite.self).filter("id == %@", self.id)
         if result.isEmpty {
             return UIImage(systemName: "star")!
