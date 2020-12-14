@@ -6,34 +6,35 @@
 //
 
 import UIKit
-//protocol FavoriteDataSource: class {
-//    func fetchData() -> [Movie]
-//}
+
 class Favorites: BaseViewController {
     let viewModel = FavoritesViewModel()
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableview: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.delegate = self
-        tableView.dataSource = self
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
     }
     override func setupData() {
-        super.setupData()
+//        super.setupData()
         
     }
     override func setupUI() {
         super.setupUI()
         self.title = "Favorites"
         
-        let nib = UINib(nibName: "MoveCell", bundle: .main)
-        tableView.register(nib, forCellReuseIdentifier: "cell")
-        
-        loadData()
+        tableview.delegate = self
+        tableview.dataSource = self
+
+        let nib = UINib(nibName: "MovieCell", bundle: nil)
+        tableview.register(nib, forCellReuseIdentifier: "Cell")
+                       
     }
     func updateUI() {
-        tableView.reloadData()
+        tableview.reloadData()
     }
     func loadData() {
         viewModel.fetchData() { (done, msg) in
@@ -55,31 +56,24 @@ extension Favorites: UITableViewDelegate, UITableViewDataSource {
         return 220
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MovieCell
+
+        let cell: MovieCell = tableview.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MovieCell
         
         let item = viewModel.favorites[indexPath.row]
-        print("Favorites: \(item.title)")
         cell.binding(with: MovieCellModel(movie: item))
         
-//        cell.titleLabel.text = item.title
-//        cell.releaseDateLabel.text = item.releaseDate
-//        cell.overviewLabel.text = item.overview
-//        cell.ratingLabel.text = "\(item.rating)"
-        
-//        if item.posterImage != nil {
-//            cell.posterImage.image = item.posterImage
-//        } else {
-//            cell.posterImage.image = item.posterImage
-//            Networking.shared().download(url: "http://image.tmdb.org/t/p/w185/\(item.posterpath)") { (image) in
-//                print("PosterPath: \(item.posterpath)")
-//                if let image = image {
-//                    cell.posterImage.image = image
-//                    item.posterImage = image
-//                } else {
-//                    cell.posterImage.image = nil
-//                }
-//            }
-//        }
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = viewModel.favorites[indexPath.row]
+        let vc = DetailViewController()
+
+        vc.viewModel.loadAPI(movieID: item.id) { (done, msg) in
+            if done {
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                print(msg)
+            }
+        }
     }
 }

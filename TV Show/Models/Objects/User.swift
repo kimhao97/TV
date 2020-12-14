@@ -9,10 +9,10 @@ import Foundation
 import RealmSwift
 
 class User: Object {
-    @objc dynamic var name: String = ""
-    @objc dynamic var birthDate: String = ""
-    @objc dynamic var email: String = ""
-    @objc dynamic var gender: String = ""
+    @objc dynamic var name: String = "John Marker"
+    @objc dynamic var birthDate: String = "1-1-1970"
+    @objc dynamic var email: String = "johnmarker@gmail.com"
+    @objc dynamic var gender: String = "Male"
     @objc dynamic var photo: NSData? = nil
     
     override static func primaryKey() -> String? {

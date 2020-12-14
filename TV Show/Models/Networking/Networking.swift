@@ -50,25 +50,24 @@ final class Networking {
         task.resume()
     }
     //MARK: downloader
-    func download(url: String, completion: @escaping (UIImage?) -> Void) {
+    func download(url: String, completion: @escaping (UIImage?) -> ()) {
         guard let url = URL(string: url) else {
             completion(nil)
-            print("1")
             return
         }
         
-        let config = URLSessionConfiguration.default
-        config.waitsForConnectivity = true
-        
-        let session = URLSession(configuration: config)
+//        let config = URLSessionConfiguration.default
+//        config.waitsForConnectivity = true
+//
+//        let session = URLSession(configuration: config)
+        let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
                 if let _ = error {
                     completion(nil)
                 } else {
                     if let data = data {
-                        let image = UIImage(data: data)
-                        completion(image)
+                        completion(UIImage(data: data))
                     } else {
                         completion(nil)
                     }
@@ -77,11 +76,4 @@ final class Networking {
         }
         task.resume()
     }
-    
-//    //MARK: -Realm
-//    
-//    //fetch data
-//    func fetchDataRealm() {
-//
-//    }
 }

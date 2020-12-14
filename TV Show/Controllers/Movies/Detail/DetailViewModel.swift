@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 class DetailViewModel {
     var movieDetail: MovieDetail!
     
@@ -21,7 +21,6 @@ class DetailViewModel {
                     if let data = data {
                         let json = data.toJSON()
                         self.movieDetail = MovieDetail(json: json)
-                        
                         completion(true, "")
                         
                     } else {
@@ -32,6 +31,14 @@ class DetailViewModel {
             }
             
         }
-    
+    }
+    func getThumbnail(completion: @escaping (UIImage?) -> ()){
+        let urlString: String = "https://image.tmdb.org/t/p/w185" + movieDetail.posterPath
+      
+        Networking.shared().download(url: urlString) { (image) in
+                if let image = image {
+                    completion(image)
+                }
+        }
     }
 }

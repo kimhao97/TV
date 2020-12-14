@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class MovieDetail {
     var releaseDate: String
@@ -13,6 +14,7 @@ final class MovieDetail {
     var overview: String
     var title: String
     var posterPath: String
+    var posterImage: UIImage?
     
     init(json: JSON) {
         self.releaseDate = json["release_date"] as! String

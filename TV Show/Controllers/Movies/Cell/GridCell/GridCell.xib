@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="GridCell" customModule="TV_Show" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.badge.minus.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kji-LH-1Vb">
+                        <rect key="frame" x="10" y="0.0" width="180" height="149.5"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVP-qH-Biq">
+                        <rect key="frame" x="10" y="150" width="180" height="50"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="sVP-qH-Biq" secondAttribute="bottom" id="4NJ-8h-jsy"/>
+                <constraint firstItem="sVP-qH-Biq" firstAttribute="top" secondItem="kji-LH-1Vb" secondAttribute="bottom" id="909-6D-SPh"/>
+                <constraint firstAttribute="bottom" secondItem="kji-LH-1Vb" secondAttribute="bottom" constant="50" id="Mvk-tb-PJ2"/>
+                <constraint firstItem="kji-LH-1Vb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="SwF-d6-0fM"/>
+                <constraint firstAttribute="trailing" secondItem="kji-LH-1Vb" secondAttribute="trailing" constant="10" id="hFK-Jr-TqD"/>
+                <constraint firstItem="kji-LH-1Vb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="phv-W1-vvT"/>
+                <constraint firstItem="sVP-qH-Biq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="qEz-n1-1Ph"/>
+                <constraint firstAttribute="trailing" secondItem="sVP-qH-Biq" secondAttribute="trailing" constant="10" id="wPu-Bd-ZR7"/>
+            </constraints>
+            <size key="customSize" width="151" height="94"/>
+            <connections>
+                <outlet property="titleLabel" destination="sVP-qH-Biq" id="sLB-eF-Gv0"/>
+                <outlet property="userImage" destination="kji-LH-1Vb" id="6SJ-wY-b60"/>
+            </connections>
+            <point key="canvasLocation" x="173.18840579710147" y="116.51785714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="person.crop.circle.badge.minus.fill" catalog="system" width="128" height="113"/>
+    </resources>
+</document>

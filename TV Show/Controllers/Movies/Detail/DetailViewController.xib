@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="TV_Show" customModuleProvider="target">
             <connections>
                 <outlet property="overviewLabel" destination="wqF-JC-qOZ" id="0wz-WS-3CH"/>
+                <outlet property="posterImage" destination="B6B-qp-p6y" id="6vW-Sv-o3e"/>
                 <outlet property="ratinglabel" destination="2TZ-CS-RZL" id="gsV-XX-QgR"/>
                 <outlet property="releaseDateLabel" destination="HnW-2y-4df" id="i6Y-og-ybR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

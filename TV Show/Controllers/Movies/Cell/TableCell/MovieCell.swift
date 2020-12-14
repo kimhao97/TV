@@ -41,17 +41,11 @@ class MovieCell: UITableViewCell {
         releaseDateLabel.text = cell.getReleaseDate()
         ratingLabel.text = cell.getRating()
         overviewLabel.text = cell.getOverview()
-        posterImage.image = cell.getThumbnail()
+        cell.getThumbnail() { (image) in
+            if let image = image {
+                self.posterImage.image = image
+            }
+        }
         favoriteButton.setImage(cell.getFavoriteImage(), for: UIControl.State.normal)
-    }
-//    //MARK: IndexPath
-//    func getIndexPath() -> IndexPath? {
-//        guard let superView = self.superview as? UITableView else {
-//            print("SuperView is not UITableView")
-//            return nil
-//        }
-//        let indexPath = superView.indexPath(for: self)
-//        return indexPath
-//    }
-    
+    }    
 }

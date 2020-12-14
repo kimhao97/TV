@@ -12,40 +12,58 @@ import SideMenu
 class Movies: BaseViewController {
     let viewModel = MoviesViewModel()
     var menu: SideMenuNavigationController?
+    var selectRight: UIBarButtonItem?
     
     @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var gridview: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
     }
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.fectchSetting()
+        viewModel.loadAPI() { (done, msg) in
+            if done {
+                self.viewModel.sorted()
+                self.updateUI()
+            } else {
+                print("API error: \(msg)")
+            }
+        }
+    }
     override func setupData() {
-//        viewModel.deleteAllFavorite() { (done, msg) in
-//            if done {
-//                print("Deleted")
-//            } else {
-//                print(msg)
-//            }
-//        }
+        print(Realm.Configuration.defaultConfiguration.fileURL)
     }
     override func setupUI() {
         super.setupUI()
         //title
-        self.title = "Movies"
+        self.title = "Popular"
                 
         //MARK: -table
         tableview.delegate = self
         tableview.dataSource = self
-        
+        tableview.alpha = 1
         //cell
-        let nib = UINib(nibName: "MovieCell", bundle: .main)
+        let nib = UINib(nibName: "MovieCell", bundle: nil)
         tableview.register(nib, forCellReuseIdentifier: "cell")
         
-        loadAPI()
+        //MARK: -grid
+        gridview.delegate = self
+        gridview.dataSource = self
+        gridview.alpha = 0
+        //cell
+        let gridNib = UINib(nibName: "GridCell", bundle: nil)
+        gridview.register(gridNib, forCellWithReuseIdentifier: "gridCell")
+        
+
         
         //MARK: -side bar
         let menuLeft  = UIBarButtonItem(image: UIImage(named: "ic-menu"), style: .plain, target: self, action: #selector(menuAction))
         navigationItem.leftBarButtonItem = menuLeft
+        
+        selectRight = UIBarButtonItem(image: UIImage(named: "ic-collection"), style: .plain, target: self, action: #selector(selectViewAction))
+        navigationItem.rightBarButtonItem = selectRight
         
         //side menu
         menu = SideMenuNavigationController(rootViewController: UserViewController())
@@ -54,26 +72,29 @@ class Movies: BaseViewController {
         
 //        SideMenuManager.default.leftMenuNavigationController = menu
 //        SideMenuManager.default.addPanGestureToPresent(toView: self.menu)
-        
-
     }
     
     func updateUI() -> Void {
         tableview.reloadData()
+        gridview.reloadData()
     }
-    
-    func loadAPI() -> Void {
-        viewModel.loadAPI() { (done, msg) in
-            if done {
-                self.updateUI()
-            } else {
-                print("API error: \(msg)")
-            }
-        }
-    }
+
     //MARK: -Menu action
     @objc func menuAction() {
         present(menu!, animated: true)
+    }
+    
+    //MARK: -Select view action
+    @objc func selectViewAction() {
+        if tableview.alpha == 1 {
+            selectRight?.image = UIImage(named: "ic-table")
+            tableview.alpha = 0
+            gridview.alpha = 1
+        } else {
+            selectRight?.image = UIImage(named: "ic-collection")
+            tableview.alpha = 1
+            gridview.alpha = 0
+        }
     }
 }
 
@@ -89,21 +110,6 @@ extension Movies: UITableViewDelegate, UITableViewDataSource{
         let item = viewModel.movies[indexPath.row]
         cell.binding(with: MovieCellModel(movie: item))
         
-//        if item.posterImage != nil {
-//            cell.posterImage.image = item.posterImage
-//        } else {
-//            cell.posterImage.image = item.posterImage
-//            Networking.shared().download(url: "http://image.tmdb.org/t/p/w185/" + item.posterpath) { (image) in
-//                print("PosterPath: \(item.posterpath)")
-//                if let image = image {
-//                    cell.posterImage.image = image
-//                    item.posterImage = image
-//                } else {
-//                    cell.posterImage.image = nil
-//                }
-//            }
-//        }
-
         //MARK: -favorite button
         cell.cellAction = { (butStatus) in
             if butStatus {
@@ -117,17 +123,41 @@ extension Movies: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = viewModel.movies[indexPath.row]
         let vc = DetailViewController()
+
         vc.viewModel.loadAPI(movieID: item.id) { (done, msg) in
             if done {
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
-                print("Movie detail error")
+                print(msg)
             }
         }
     }
-//    func getData() -> [Movie] {
-//        print("fetchData")
-//        return nil
-//    }
+}
+
+extension Movies: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.movies.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = gridview.dequeueReusableCell(withReuseIdentifier: "gridCell", for: indexPath) as! GridCell
+        let item = viewModel.movies[indexPath.row]
+        cell.binding(with: MovieCellModel(movie: item))
     
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = viewModel.movies[indexPath.row]
+        let vc = DetailViewController()
+
+        vc.viewModel.loadAPI(movieID: item.id) { (done, msg) in
+            if done {
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                print(msg)
+            }
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 200, height: 200)
+    }
 }

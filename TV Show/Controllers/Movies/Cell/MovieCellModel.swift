@@ -16,7 +16,7 @@ class MovieCellModel {
     var posterpath: String
     var id: Int
 //    var posterImage: UIImage?
-//    var movie = Movie()
+
     init(movie: Movie) {
         self.title = movie.title
         self.releaseDate = movie.releaseDate
@@ -47,26 +47,20 @@ class MovieCellModel {
         return overview
     }
     
-    func getThumbnail() -> UIImage {
-        var imgData: UIImage?
+    func getThumbnail(completion: @escaping (UIImage?) -> ()){
         let urlString: String = "https://image.tmdb.org/t/p/w185" + posterpath
-        
+      
         Networking.shared().download(url: urlString) { (image) in
-//            print("URL: \(urlString)")
-            if let image = image {
-                imgData = image
-            }
-        }
-        if let imgData = imgData {
-            return imgData
-        } else {
-            return  UIImage()
+                if let image = image {
+//                    self.posterImage = image
+                    completion(image)
+                }
         }
     }
     
     func getFavoriteImage() -> UIImage {
         let realm = try! Realm()
-        print(Realm.Configuration.defaultConfiguration.fileURL)
+      
         let result = realm.objects(Favorite.self).filter("id == %@", self.id)
         if result.isEmpty {
             return UIImage(systemName: "star")!

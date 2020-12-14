@@ -32,9 +32,9 @@ class UserViewController: BaseViewController {
                 userNameLabel.text = item.name
                 birthdateLabel.text = item.birthDate
                 mailLabel.text = item.email
-                genderLabel.text = item.gender
+                genderLabel.text = item.gender != "" ? item.gender : "Male"
             } else {
-                print("Error: fecth data")
+                print(msg)
             }
         }
     }

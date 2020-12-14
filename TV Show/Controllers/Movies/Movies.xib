@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Movies" customModule="TV_Show" customModuleProvider="target">
             <connections>
+                <outlet property="gridview" destination="mAB-Ka-7pr" id="tUg-Re-XXD"/>
                 <outlet property="tableview" destination="zWh-zn-TCC" id="OKz-VW-LRK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,6 +20,16 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="mAB-Ka-7pr">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9gS-5c-Y6F">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zWh-zn-TCC">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -27,9 +38,13 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="mAB-Ka-7pr" secondAttribute="bottom" id="AT7-qx-DOQ"/>
+                <constraint firstItem="mAB-Ka-7pr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="P8K-md-87n"/>
                 <constraint firstItem="zWh-zn-TCC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="WJo-JL-sU9"/>
                 <constraint firstItem="zWh-zn-TCC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="fgD-sY-Cse"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mAB-Ka-7pr" secondAttribute="trailing" id="h3Z-9i-hvf"/>
                 <constraint firstItem="zWh-zn-TCC" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="neV-sg-unc"/>
+                <constraint firstItem="mAB-Ka-7pr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="uic-VJ-zzc"/>
                 <constraint firstItem="zWh-zn-TCC" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="yFP-l0-G7a"/>
             </constraints>
             <point key="canvasLocation" x="53.623188405797109" y="86.383928571428569"/>

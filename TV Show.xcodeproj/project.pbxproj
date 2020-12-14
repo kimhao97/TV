@@ -32,6 +32,12 @@
 		33349C892570A4FC00CE17AE /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33349C882570A4FC00CE17AE /* FavoritesViewModel.swift */; };
 		33349C912570F35600CE17AE /* MovieCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33349C902570F35600CE17AE /* MovieCellModel.swift */; };
 		33349CAC2579E77300CE17AE /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33349CAB2579E77300CE17AE /* Favorite.swift */; };
+		3354F1B025821678000C37D9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354F1AF25821678000C37D9 /* SettingsViewModel.swift */; };
+		3354F1B925835D12000C37D9 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354F1B725835D12000C37D9 /* SettingCell.swift */; };
+		3354F1BA25835D12000C37D9 /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3354F1B825835D12000C37D9 /* SettingCell.xib */; };
+		3354F1C225836107000C37D9 /* SettingCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354F1C125836107000C37D9 /* SettingCellModel.swift */; };
+		3354F1CA2584A446000C37D9 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354F1C92584A446000C37D9 /* Setting.swift */; };
+		3354F1CF2584AEE5000C37D9 /* RealmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354F1CE2584AEE5000C37D9 /* RealmDB.swift */; };
 		335F62A5256CA1B100E7A1B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335F62A4256CA1B100E7A1B3 /* AppDelegate.swift */; };
 		335F62A7256CA1B100E7A1B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335F62A6256CA1B100E7A1B3 /* SceneDelegate.swift */; };
 		335F62AE256CA1B600E7A1B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 335F62AD256CA1B600E7A1B3 /* Assets.xcassets */; };
@@ -45,6 +51,8 @@
 		33967AED257B809400217249 /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33967AEB257B809400217249 /* EditViewController.xib */; };
 		33967AF5257CCE5200217249 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33967AF4257CCE5200217249 /* EditViewModel.swift */; };
 		33967AFA257CD80E00217249 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33967AF9257CD80E00217249 /* UserViewModel.swift */; };
+		33E31A6B2580676600E4B451 /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E31A692580676600E4B451 /* GridCell.swift */; };
+		33E31A6C2580676600E4B451 /* GridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33E31A6A2580676600E4B451 /* GridCell.xib */; };
 		9BD4C2850998F0CE65382DB4 /* Pods_TV_Show_TV_ShowUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63CF6732A3EE3FA695630595 /* Pods_TV_Show_TV_ShowUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +99,12 @@
 		33349C882570A4FC00CE17AE /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		33349C902570F35600CE17AE /* MovieCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellModel.swift; sourceTree = "<group>"; };
 		33349CAB2579E77300CE17AE /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
+		3354F1AF25821678000C37D9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		3354F1B725835D12000C37D9 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		3354F1B825835D12000C37D9 /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
+		3354F1C125836107000C37D9 /* SettingCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCellModel.swift; sourceTree = "<group>"; };
+		3354F1C92584A446000C37D9 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		3354F1CE2584AEE5000C37D9 /* RealmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDB.swift; sourceTree = "<group>"; };
 		335F62A1256CA1B100E7A1B3 /* TV Show.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TV Show.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		335F62A4256CA1B100E7A1B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		335F62A6256CA1B100E7A1B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +124,8 @@
 		33967AEB257B809400217249 /* EditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 		33967AF4257CCE5200217249 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		33967AF9257CD80E00217249 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		33E31A692580676600E4B451 /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
+		33E31A6A2580676600E4B451 /* GridCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridCell.xib; sourceTree = "<group>"; };
 		51F5462E7E02CC54FA189610 /* Pods-TV Show-TV ShowUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TV Show-TV ShowUITests.debug.xcconfig"; path = "Target Support Files/Pods-TV Show-TV ShowUITests/Pods-TV Show-TV ShowUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		63CF6732A3EE3FA695630595 /* Pods_TV_Show_TV_ShowUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TV_Show_TV_ShowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F5ABB281C823AC82DAE71CA /* Pods_TV_Show.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TV_Show.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,8 +201,10 @@
 		33349BFF256CA66200CE17AE /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				3354F1B625835CAE000C37D9 /* Cell */,
 				33349C16256CA71700CE17AE /* Settings.swift */,
 				33349C17256CA71700CE17AE /* Settings.xib */,
+				3354F1AF25821678000C37D9 /* SettingsViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -216,6 +234,7 @@
 				33349C6E256E482600CE17AE /* MovieDetail.swift */,
 				33349CAB2579E77300CE17AE /* Favorite.swift */,
 				33967AD3257B1C4400217249 /* User.swift */,
+				3354F1C92584A446000C37D9 /* Setting.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -247,8 +266,8 @@
 		33349C4D256CF25100CE17AE /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				33349C4E256CF27E00CE17AE /* MovieCell.swift */,
-				33349C4F256CF27E00CE17AE /* MovieCell.xib */,
+				33E31A682580673400E4B451 /* GridCell */,
+				33E31A67258066EF00E4B451 /* TableCell */,
 				33349C902570F35600CE17AE /* MovieCellModel.swift */,
 			);
 			path = Cell;
@@ -266,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				33349C5F256D014E00CE17AE /* Networking.swift */,
+				3354F1CE2584AEE5000C37D9 /* RealmDB.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -278,6 +298,16 @@
 				33349C80256F636400CE17AE /* DetailViewModel.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		3354F1B625835CAE000C37D9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3354F1B725835D12000C37D9 /* SettingCell.swift */,
+				3354F1B825835D12000C37D9 /* SettingCell.xib */,
+				3354F1C125836107000C37D9 /* SettingCellModel.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		335F6298256CA1B100E7A1B3 = {
@@ -379,6 +409,24 @@
 				33967AF4257CCE5200217249 /* EditViewModel.swift */,
 			);
 			path = EditUser;
+			sourceTree = "<group>";
+		};
+		33E31A67258066EF00E4B451 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				33349C4E256CF27E00CE17AE /* MovieCell.swift */,
+				33349C4F256CF27E00CE17AE /* MovieCell.xib */,
+			);
+			path = TableCell;
+			sourceTree = "<group>";
+		};
+		33E31A682580673400E4B451 /* GridCell */ = {
+			isa = PBXGroup;
+			children = (
+				33E31A692580676600E4B451 /* GridCell.swift */,
+				33E31A6A2580676600E4B451 /* GridCell.xib */,
+			);
+			path = GridCell;
 			sourceTree = "<group>";
 		};
 		AB9C0C31142E6F701D59D55B /* Frameworks */ = {
@@ -516,11 +564,13 @@
 				33967ADC257B1E2800217249 /* UserViewController.xib in Resources */,
 				33967AED257B809400217249 /* EditViewController.xib in Resources */,
 				33349C51256CF27E00CE17AE /* MovieCell.xib in Resources */,
+				33E31A6C2580676600E4B451 /* GridCell.xib in Resources */,
 				33349C12256CA6FB00CE17AE /* Movies.xib in Resources */,
 				33349C6A256E3A5700CE17AE /* DetailViewController.xib in Resources */,
 				33349C04256CA68C00CE17AE /* About.xib in Resources */,
 				33349C0B256CA6C700CE17AE /* Favorites.xib in Resources */,
 				335F62B1256CA1B600E7A1B3 /* LaunchScreen.storyboard in Resources */,
+				3354F1BA25835D12000C37D9 /* SettingCell.xib in Resources */,
 				335F62AE256CA1B600E7A1B3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -658,6 +708,7 @@
 				33349C50256CF27E00CE17AE /* MovieCell.swift in Sources */,
 				33349C11256CA6FB00CE17AE /* Movies.swift in Sources */,
 				33967ADB257B1E2800217249 /* UserViewController.swift in Sources */,
+				33E31A6B2580676600E4B451 /* GridCell.swift in Sources */,
 				33967AF5257CCE5200217249 /* EditViewModel.swift in Sources */,
 				33349C892570A4FC00CE17AE /* FavoritesViewModel.swift in Sources */,
 				33967AD4257B1C4400217249 /* User.swift in Sources */,
@@ -669,10 +720,15 @@
 				33349C03256CA68C00CE17AE /* About.swift in Sources */,
 				33349C41256CEBAC00CE17AE /* API.swift in Sources */,
 				335F62A7256CA1B100E7A1B3 /* SceneDelegate.swift in Sources */,
+				3354F1B025821678000C37D9 /* SettingsViewModel.swift in Sources */,
 				33349C6F256E482600CE17AE /* MovieDetail.swift in Sources */,
 				33349C49256CECCB00CE17AE /* MoviesViewModel.swift in Sources */,
+				3354F1C225836107000C37D9 /* SettingCellModel.swift in Sources */,
+				3354F1CF2584AEE5000C37D9 /* RealmDB.swift in Sources */,
+				3354F1CA2584A446000C37D9 /* Setting.swift in Sources */,
 				33967AEC257B809400217249 /* EditViewController.swift in Sources */,
 				33349C69256E3A5700CE17AE /* DetailViewController.swift in Sources */,
+				3354F1B925835D12000C37D9 /* SettingCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

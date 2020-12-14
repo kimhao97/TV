@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Favorites" customModule="TV_Show" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="Fke-aP-ce8" id="6L0-W5-ZQL"/>
+                <outlet property="tableview" destination="Fke-aP-ce8" id="DQE-YQ-Pd7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,14 +19,19 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fke-aP-ce8">
-                    <rect key="frame" x="0.0" y="44" width="414" height="816"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fke-aP-ce8">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Fke-aP-ce8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="LP6-dj-I2t"/>
+                <constraint firstItem="Fke-aP-ce8" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="fb1-e1-5qf"/>
+                <constraint firstItem="Fke-aP-ce8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rqd-GK-Vel"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Fke-aP-ce8" secondAttribute="bottom" id="y9g-tE-wD9"/>
+            </constraints>
             <point key="canvasLocation" x="139" y="62"/>
         </view>
     </objects>

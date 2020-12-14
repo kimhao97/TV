@@ -16,10 +16,12 @@ class UserViewModel {
             let realm = try! Realm()
             
             let results = realm.objects(User.self)
-            
-            user = results[0]
-            
-            completion(true, "")
+            if (results.count != 0) {
+                user = results[0]
+                completion(true, "")
+            } else {
+                completion(false, "Realm cant fetch data")
+            }
         } catch {
             completion(false, "Realm cant fetch data")
         }
