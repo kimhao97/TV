@@ -10,7 +10,7 @@ import UIKit
 class Settings: BaseViewController {
     let headerSection: [String] = ["Filter", "Sort By"]
     let namesCell: [[String]] = [
-    ["Popular Movies", "Top Rated Movies", "Upcoming Movies", "NowPlaying Movies"],
+    ["Popular Movies", "Top Rated Movies", "Upcoming Movies", "NowPlaying Movies", "", ""],
     ["Release Date", "Rating"] ]
     let viewModel = SettingsViewModel()
     
@@ -33,6 +33,7 @@ class Settings: BaseViewController {
         
         let nib = UINib(nibName: "SettingCell", bundle: .main)
         tableview.register(nib, forCellReuseIdentifier: "cell")
+        tableview.register(ReleaseYearCell.nid(), forCellReuseIdentifier: ReleaseYearCell.identifier)
     }
     
     func updateUI() {
@@ -46,6 +47,10 @@ extension Settings: UITableViewDelegate, UITableViewDataSource {
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row >= 4 {
+            let cell = tableview.dequeueReusableCell(withIdentifier: ReleaseYearCell.identifier) as! ReleaseYearCell
+            return cell
+        }
         let cell = tableview.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SettingCell
 
         let nameOfCell = namesCell[indexPath.section][indexPath.row]

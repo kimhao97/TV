@@ -36,7 +36,7 @@ class EditViewController: BaseViewController {
         
         let item = viewModel.user
         if let img = item.photo {
-            userImage.image = UIImage(data: img as! Data)
+            userImage.image = UIImage(data: img as Data)
         }
         userNameTextField.text = item.name
         birthDateTextField.text = item.birthDate
@@ -75,22 +75,21 @@ class EditViewController: BaseViewController {
         viewModel.saveUserData()
     }
     
-    
+    //MARK: -Date picker
     @IBAction func birthDatePicker(_ sender: Any) {
-
         datePicker.datePickerMode = .date
         //toolbar
-        let toolbar = UIToolbar()
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 300, width: 375, height: 100))
         toolbar.sizeToFit()
-        
+        view.addSubview(datePicker)
 //        toolbar.sizeThatFits(CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height/3))
         
         //bar button
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPickerAction))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let selectButton = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(selectPickerAction))
         toolbar.setItems([cancelButton, spaceButton, selectButton], animated: true)
-        
+       
         //add toolbar to textField
         birthDateTextField.inputAccessoryView = toolbar
         //add datePicker to textField
@@ -108,8 +107,8 @@ class EditViewController: BaseViewController {
     @objc func cancelPickerAction() {
         self.view.endEditing(true)
     }
+    
     //MARK: -picking image
-        
     @IBAction func pickPhotoImage(_ sender: Any) {
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary

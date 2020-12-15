@@ -38,6 +38,10 @@
 		3354F1C225836107000C37D9 /* SettingCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354F1C125836107000C37D9 /* SettingCellModel.swift */; };
 		3354F1CA2584A446000C37D9 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354F1C92584A446000C37D9 /* Setting.swift */; };
 		3354F1CF2584AEE5000C37D9 /* RealmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354F1CE2584AEE5000C37D9 /* RealmDB.swift */; };
+		3354F1D925889A38000C37D9 /* ReleaseYearCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354F1D725889A38000C37D9 /* ReleaseYearCell.swift */; };
+		3354F1DA25889A38000C37D9 /* ReleaseYearCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3354F1D825889A38000C37D9 /* ReleaseYearCell.xib */; };
+		3354F1E325889A4C000C37D9 /* RatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3354F1E125889A4C000C37D9 /* RatingCell.swift */; };
+		3354F1E425889A4C000C37D9 /* RatingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3354F1E225889A4C000C37D9 /* RatingCell.xib */; };
 		335F62A5256CA1B100E7A1B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335F62A4256CA1B100E7A1B3 /* AppDelegate.swift */; };
 		335F62A7256CA1B100E7A1B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335F62A6256CA1B100E7A1B3 /* SceneDelegate.swift */; };
 		335F62AE256CA1B600E7A1B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 335F62AD256CA1B600E7A1B3 /* Assets.xcassets */; };
@@ -105,6 +109,10 @@
 		3354F1C125836107000C37D9 /* SettingCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCellModel.swift; sourceTree = "<group>"; };
 		3354F1C92584A446000C37D9 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		3354F1CE2584AEE5000C37D9 /* RealmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDB.swift; sourceTree = "<group>"; };
+		3354F1D725889A38000C37D9 /* ReleaseYearCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseYearCell.swift; sourceTree = "<group>"; };
+		3354F1D825889A38000C37D9 /* ReleaseYearCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReleaseYearCell.xib; sourceTree = "<group>"; };
+		3354F1E125889A4C000C37D9 /* RatingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCell.swift; sourceTree = "<group>"; };
+		3354F1E225889A4C000C37D9 /* RatingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingCell.xib; sourceTree = "<group>"; };
 		335F62A1256CA1B100E7A1B3 /* TV Show.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TV Show.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		335F62A4256CA1B100E7A1B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		335F62A6256CA1B100E7A1B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -303,11 +311,39 @@
 		3354F1B625835CAE000C37D9 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				3354F1B725835D12000C37D9 /* SettingCell.swift */,
-				3354F1B825835D12000C37D9 /* SettingCell.xib */,
+				3354F1D4258899AB000C37D9 /* Rating */,
+				3354F1D625889A09000C37D9 /* ReleaseYear */,
+				3354F1D5258899B6000C37D9 /* Title */,
 				3354F1C125836107000C37D9 /* SettingCellModel.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		3354F1D4258899AB000C37D9 /* Rating */ = {
+			isa = PBXGroup;
+			children = (
+				3354F1E125889A4C000C37D9 /* RatingCell.swift */,
+				3354F1E225889A4C000C37D9 /* RatingCell.xib */,
+			);
+			path = Rating;
+			sourceTree = "<group>";
+		};
+		3354F1D5258899B6000C37D9 /* Title */ = {
+			isa = PBXGroup;
+			children = (
+				3354F1B725835D12000C37D9 /* SettingCell.swift */,
+				3354F1B825835D12000C37D9 /* SettingCell.xib */,
+			);
+			path = Title;
+			sourceTree = "<group>";
+		};
+		3354F1D625889A09000C37D9 /* ReleaseYear */ = {
+			isa = PBXGroup;
+			children = (
+				3354F1D725889A38000C37D9 /* ReleaseYearCell.swift */,
+				3354F1D825889A38000C37D9 /* ReleaseYearCell.xib */,
+			);
+			path = ReleaseYear;
 			sourceTree = "<group>";
 		};
 		335F6298256CA1B100E7A1B3 = {
@@ -562,12 +598,14 @@
 			files = (
 				33349C19256CA71700CE17AE /* Settings.xib in Resources */,
 				33967ADC257B1E2800217249 /* UserViewController.xib in Resources */,
+				3354F1E425889A4C000C37D9 /* RatingCell.xib in Resources */,
 				33967AED257B809400217249 /* EditViewController.xib in Resources */,
 				33349C51256CF27E00CE17AE /* MovieCell.xib in Resources */,
 				33E31A6C2580676600E4B451 /* GridCell.xib in Resources */,
 				33349C12256CA6FB00CE17AE /* Movies.xib in Resources */,
 				33349C6A256E3A5700CE17AE /* DetailViewController.xib in Resources */,
 				33349C04256CA68C00CE17AE /* About.xib in Resources */,
+				3354F1DA25889A38000C37D9 /* ReleaseYearCell.xib in Resources */,
 				33349C0B256CA6C700CE17AE /* Favorites.xib in Resources */,
 				335F62B1256CA1B600E7A1B3 /* LaunchScreen.storyboard in Resources */,
 				3354F1BA25835D12000C37D9 /* SettingCell.xib in Resources */,
@@ -715,12 +753,14 @@
 				33349C912570F35600CE17AE /* MovieCellModel.swift in Sources */,
 				33349C57256CF7F600CE17AE /* BaseViewController.swift in Sources */,
 				335F62A5256CA1B100E7A1B3 /* AppDelegate.swift in Sources */,
+				3354F1E325889A4C000C37D9 /* RatingCell.swift in Sources */,
 				33349CAC2579E77300CE17AE /* Favorite.swift in Sources */,
 				33349C0A256CA6C700CE17AE /* Favorites.swift in Sources */,
 				33349C03256CA68C00CE17AE /* About.swift in Sources */,
 				33349C41256CEBAC00CE17AE /* API.swift in Sources */,
 				335F62A7256CA1B100E7A1B3 /* SceneDelegate.swift in Sources */,
 				3354F1B025821678000C37D9 /* SettingsViewModel.swift in Sources */,
+				3354F1D925889A38000C37D9 /* ReleaseYearCell.swift in Sources */,
 				33349C6F256E482600CE17AE /* MovieDetail.swift in Sources */,
 				33349C49256CECCB00CE17AE /* MoviesViewModel.swift in Sources */,
 				3354F1C225836107000C37D9 /* SettingCellModel.swift in Sources */,
