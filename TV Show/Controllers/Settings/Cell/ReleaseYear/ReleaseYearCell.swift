@@ -10,10 +10,10 @@ import UIKit
 class ReleaseYearCell: UITableViewCell {
 
     @IBOutlet weak var releaseYearTextField: UITextField!
-         
+      
     var datePicker = UIDatePicker()
     static let identifier: String = "ReleaseYearCell"
-    static func nid() -> UINib {
+    static func nib() -> UINib {
         return UINib(nibName: "ReleaseYearCell", bundle: nil)
     }
     override func awakeFromNib() {

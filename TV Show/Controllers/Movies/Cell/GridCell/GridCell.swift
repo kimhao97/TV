@@ -8,6 +8,12 @@
 import UIKit
 
 class GridCell: UICollectionViewCell {
+    //MARK: -Properties
+    static let identifer: String = "GridCell"
+    static func nib() -> UINib {
+        return UINib(nibName: "GridCell", bundle: nil)
+    }
+    
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     override func awakeFromNib() {

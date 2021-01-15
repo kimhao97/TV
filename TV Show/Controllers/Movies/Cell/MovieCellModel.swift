@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 import RealmSwift
 class MovieCellModel {
-    var title: String
-    var releaseDate: String
-    var overview: String
-    var rating: String
-    var posterpath: String
-    var id: Int
+    private var title: String
+    private var releaseDate: String
+    private var overview: String
+    private var rating: String
+    private var posterpath: String
+    private var id: Int
 //    var posterImage: UIImage?
 
     init(movie: Movie) {
@@ -50,11 +50,15 @@ class MovieCellModel {
     func getThumbnail(completion: @escaping (UIImage?) -> ()){
         let urlString: String = "https://image.tmdb.org/t/p/w185" + posterpath
       
-        Networking.shared().download(url: urlString) { (image) in
+        Networking.shared().downloadImage(url: urlString) { result in
+            switch result {
+            case .failure(let _):
+                return
+            case .success(let image):
                 if let image = image {
-//                    self.posterImage = image
                     completion(image)
                 }
+            }
         }
     }
     

@@ -8,26 +8,24 @@
 import Foundation
 import RealmSwift
 
-typealias  Completion = (Bool, String) -> Void
-
 class MoviesViewModel {
+    //MARK: -Properties
     var movies: [Movie] = []
     var setting = Setting()
     var filterType: SettingType.FilterType = .popular
     var sortByType: SettingType.SortByType?
-    //MARK: -load API
+    //MARK: -Public function
     func loadAPI(completion: @escaping Completion) -> Void {
         
         let urlString: String = SettingType.FilterType.baseURL + self.filterType.path
         
-        Networking.shared().request(with: urlString) {(data, error) in
-            if let error = error {
-                //callback
+        Networking.shared().request(with: urlString) { result in
+            switch result {
+            case .failure(let error):
                 completion(false, error.localizedDescription)
-            } else {
+            case .success(let data):
                 if let data = data {
                     let json = data.toJSON()
-//                    let feed = json["feed"] as! JSON //check it
                     let results = json["results"] as! [JSON]
                     self.movies.removeAll()
                     for item in results {
@@ -35,10 +33,24 @@ class MoviesViewModel {
                         self.movies.append(movie)
                     }
                     completion(true, "")
-                } else {
-                    completion(false, "Data format is error")
                 }
             }
+//            if let error = error {
+//                //callback
+//                completion(false, error.localizedDescription)
+//            } else {
+//                if let data = data {
+//                    let json = data.toJSON()
+////                    let feed = json["feed"] as! JSON //check it
+//                    let results = json["results"] as! [JSON]
+//                    self.movies.removeAll()
+//                    for item in results {
+//                        let movie = Movie(json: item)
+//                        self.movies.append(movie)
+//                    }
+//                    completion(true, "")
+//                }
+//            }
         }
     }
     func sorted() {

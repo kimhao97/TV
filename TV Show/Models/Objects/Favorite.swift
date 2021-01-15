@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Favorite: Object {
+final class Favorite: Object {
     @objc dynamic var title: String = ""
     @objc dynamic var releaseDate: String = ""
     @objc dynamic var overview: String = ""

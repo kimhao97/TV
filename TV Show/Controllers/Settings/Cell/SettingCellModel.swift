@@ -19,18 +19,34 @@ class SettingCellModel {
         return self.nameOfCell
     }
     func getThumbnail() -> UIImage? {
-        fetchSettingData()
+        fetchSettingRealm()
         if nameOfCell == setting.nameFilter || nameOfCell == setting.nameSort{
             return UIImage(systemName: "checkmark")
         } else {
             return nil
         }
     }
-    func fetchSettingData() {
+    func fetchSettingRealm() {
         let realm = try! Realm()
         
         let results = realm.objects(Setting.self)
         
         setting = results[0]
     }
+    func updateSettingRealm<T>(_ data: T, for key: SettingType.SortByType) {
+        let realm = try! Realm()
+        
+        let results = realm.objects(Setting.self)
+        switch  key{
+        case .rating:
+            try! realm.write {
+                results[0].rating = data as! Float
+            }
+        case .releaseDate:
+            try! realm.write {
+                results[0].releaseYear = data as! Int
+            }
+        }
+    }
+    
 }

@@ -33,7 +33,8 @@ class Settings: BaseViewController {
         
         let nib = UINib(nibName: "SettingCell", bundle: .main)
         tableview.register(nib, forCellReuseIdentifier: "cell")
-        tableview.register(ReleaseYearCell.nid(), forCellReuseIdentifier: ReleaseYearCell.identifier)
+        tableview.register(ReleaseYearCell.nib(), forCellReuseIdentifier: ReleaseYearCell.identifier)
+        tableview.register(RatingCell.nib(), forCellReuseIdentifier: RatingCell.identifier)
     }
     
     func updateUI() {
@@ -47,10 +48,15 @@ extension Settings: UITableViewDelegate, UITableViewDataSource {
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row >= 4 {
+        if indexPath.row == 4 {
+            let cell = tableview.dequeueReusableCell(withIdentifier: RatingCell.identifier) as! RatingCell
+            return cell
+        }
+        if indexPath.row == 5 {
             let cell = tableview.dequeueReusableCell(withIdentifier: ReleaseYearCell.identifier) as! ReleaseYearCell
             return cell
         }
+
         let cell = tableview.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SettingCell
 
         let nameOfCell = namesCell[indexPath.section][indexPath.row]
@@ -74,6 +80,9 @@ extension Settings: UITableViewDelegate, UITableViewDataSource {
         return headerSection[section]
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 4 {
+            return 100
+        }
         return 60
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

@@ -8,15 +8,28 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    //MARK: -Properties
     var window: UIWindow?
+    
+    let tabBarController = UITabBarController()
+    
+    let moviesVC = Movies()
+    let favoritesVC = Favorites()
+    let settingsVC = Settings()
+    let aboutVC = About()
+    
     enum typeScreen {
         case movies
         case favorites
         case settings
         case about
     }
-
+    
+    static func shared() -> SceneDelegate {
+        let scene = UIApplication.shared.connectedScenes.first
+        return (scene?.delegate as! SceneDelegate)
+    }
+    //MARK: -Public func
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
@@ -40,27 +53,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     //MARK: tabBar
     func createTabBar() -> Void {
         //movies
-        let moviesVC = Movies()
         let moviesNavi = UINavigationController(rootViewController: moviesVC)
         moviesNavi.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(named: "ic-tabbar-home") , tag: 0)
         
         //favorites
-        let favoritesVC = Favorites()
         let favoritesNavi = UINavigationController(rootViewController: favoritesVC)
         favoritesNavi.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+    
         
         //settings
-        let settingsVC = Settings()
         let settingsNavi = UINavigationController(rootViewController: settingsVC)
         settingsNavi.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "ic-tabbar-settings"), tag: 2)
         
         //about
-        let aboutVC = About()
         let aboutNavi = UINavigationController(rootViewController: aboutVC)
         aboutNavi.tabBarItem = UITabBarItem(title: "About", image: UIImage(named: "ic-tabbar-about"), tag: 3)
         
         //tabBarController
-        let tabBarController = UITabBarController()
+        
         tabBarController.viewControllers = [moviesNavi, favoritesNavi, settingsNavi, aboutNavi]
         
         //view root

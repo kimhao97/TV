@@ -10,13 +10,15 @@ import RealmSwift
 import SideMenu
 
 class Movies: BaseViewController {
+    //MARK: -Properties
+    @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var gridview: UICollectionView!
+    
     let viewModel = MoviesViewModel()
     var menu: SideMenuNavigationController?
     var selectRight: UIBarButtonItem?
     
-    @IBOutlet weak var tableview: UITableView!
-    @IBOutlet weak var gridview: UICollectionView!
-    
+    //MARK: -Public func
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -45,16 +47,14 @@ class Movies: BaseViewController {
         tableview.dataSource = self
         tableview.alpha = 1
         //cell
-        let nib = UINib(nibName: "MovieCell", bundle: nil)
-        tableview.register(nib, forCellReuseIdentifier: "cell")
+        tableview.register(MovieCell.nib(), forCellReuseIdentifier: MovieCell.identifier)
         
         //MARK: -grid
         gridview.delegate = self
         gridview.dataSource = self
         gridview.alpha = 0
         //cell
-        let gridNib = UINib(nibName: "GridCell", bundle: nil)
-        gridview.register(gridNib, forCellWithReuseIdentifier: "gridCell")
+        gridview.register(GridCell.nib(), forCellWithReuseIdentifier: GridCell.identifer)
         
 
         
@@ -105,14 +105,15 @@ extension Movies: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 220
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableview.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MovieCell
+        let cell = tableview.dequeueReusableCell(withIdentifier: MovieCell.identifier, for: indexPath) as! MovieCell
         let item = viewModel.movies[indexPath.row]
         cell.binding(with: MovieCellModel(movie: item))
         
-        //MARK: -favorite button
-        cell.cellAction = { (butStatus) in
-            if butStatus {
+        //MARK: -Favorite button
+        cell.cellAction = { (isFavorite) in
+            if isFavorite {
                 self.viewModel.addFavorite(movie: item)
             } else {
                 self.viewModel.deleteItem(movie: item)
@@ -122,15 +123,8 @@ extension Movies: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = viewModel.movies[indexPath.row]
-        let vc = DetailViewController()
-
-        vc.viewModel.loadAPI(movieID: item.id) { (done, msg) in
-            if done {
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                print(msg)
-            }
-        }
+        let vc = DetailViewController(movieID: item.id)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -139,23 +133,17 @@ extension Movies: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         return viewModel.movies.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = gridview.dequeueReusableCell(withReuseIdentifier: "gridCell", for: indexPath) as! GridCell
+        let cell = gridview.dequeueReusableCell(withReuseIdentifier: GridCell.identifer, for: indexPath) as! GridCell
         let item = viewModel.movies[indexPath.row]
+        
         cell.binding(with: MovieCellModel(movie: item))
     
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = viewModel.movies[indexPath.row]
-        let vc = DetailViewController()
-
-        vc.viewModel.loadAPI(movieID: item.id) { (done, msg) in
-            if done {
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                print(msg)
-            }
-        }
+        let vc = DetailViewController(movieID: item.id)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 200, height: 200)

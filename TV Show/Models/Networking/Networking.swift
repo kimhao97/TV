@@ -18,15 +18,14 @@ final class Networking {
         return sharedNetworking
     }
     
-    //MARK: init
     private init() {
     }
     
-    //MARK: request
-    func request(with urlString: String, completion: @escaping (Data?, APIError?) -> Void) {
+    //MARK: Request
+    func request(with urlString: String, completion: @escaping (APIResult) -> Void) {
         guard let url = URL(string: urlString) else {
             // ??
-            completion( nil, APIError.erroURL)
+            completion( .failure(.erroURL))
             return
         }
         
@@ -37,39 +36,37 @@ final class Networking {
         let task = session.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
-                    completion(nil, APIError.error(error.localizedDescription))
+                    completion(.failure(.error(error.localizedDescription)))
                 } else {
                     if let data = data {
-                        completion(data, nil)
+                        completion(.success(data))
                     } else {
-                        completion(nil, APIError.error("Data format is error"))
+                        completion(.failure(.error("Data is nil")))
                     }
                 }
             }
         }
         task.resume()
     }
-    //MARK: downloader
-    func download(url: String, completion: @escaping (UIImage?) -> ()) {
+    //MARK: Downloader
+    func downloadImage(url: String, completion: @escaping APICompletion<UIImage?>) {
         guard let url = URL(string: url) else {
-            completion(nil)
+            completion(.failure(APIError.erroURL))
             return
         }
         
 //        let config = URLSessionConfiguration.default
 //        config.waitsForConnectivity = true
-//
+
 //        let session = URLSession(configuration: config)
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
-                if let _ = error {
-                    completion(nil)
+                if let error = error {
+                    completion(.failure(.error(error.localizedDescription)))
                 } else {
                     if let data = data {
-                        completion(UIImage(data: data))
-                    } else {
-                        completion(nil)
+                        completion(.success(UIImage(data: data)))
                     }
                 }
             }

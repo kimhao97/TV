@@ -8,19 +8,18 @@
 import UIKit
 
 class Favorites: BaseViewController {
+    //MARK: -Properties
     let viewModel = FavoritesViewModel()
-
+    
     @IBOutlet weak var tableview: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     override func viewWillAppear(_ animated: Bool) {
         loadData()
     }
     override func setupData() {
-//        super.setupData()
-        
     }
     override func setupUI() {
         super.setupUI()
@@ -29,12 +28,15 @@ class Favorites: BaseViewController {
         tableview.delegate = self
         tableview.dataSource = self
 
-        let nib = UINib(nibName: "MovieCell", bundle: nil)
-        tableview.register(nib, forCellReuseIdentifier: "Cell")
+        tableview.register(MovieCell.nib(), forCellReuseIdentifier: MovieCell.identifier)
                        
     }
     func updateUI() {
         tableview.reloadData()
+        
+        if let tabBarItem = SceneDelegate.shared().tabBarController.tabBar.items {
+            tabBarItem[1].badgeValue = "\(viewModel.favorites.count)"
+        }
     }
     func loadData() {
         viewModel.fetchData() { (done, msg) in
@@ -57,23 +59,32 @@ extension Favorites: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell: MovieCell = tableview.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MovieCell
+        let cell: MovieCell = tableview.dequeueReusableCell(withIdentifier: MovieCell.identifier, for: indexPath) as! MovieCell
         
         let item = viewModel.favorites[indexPath.row]
         cell.binding(with: MovieCellModel(movie: item))
         
+        //MARK: -Favorite button
+        cell.cellAction = { (isFavorite) in
+            if isFavorite {
+                
+            } else {
+                self.showAlert(message: "Are you sure you want to unfavorite this item") { (isOK, msg) in
+                    if isOK {
+                        self.viewModel.deleteItem(favorite: item)
+                        self.loadData()
+                    } else {
+                        self.updateUI()
+                    }
+                }
+            }
+           
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = viewModel.favorites[indexPath.row]
-        let vc = DetailViewController()
-
-        vc.viewModel.loadAPI(movieID: item.id) { (done, msg) in
-            if done {
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                print(msg)
-            }
-        }
+        let vc = DetailViewController(movieID: item.id)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

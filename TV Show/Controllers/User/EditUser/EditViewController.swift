@@ -8,14 +8,16 @@
 import UIKit
 
 class EditViewController: BaseViewController {
+    //MARK: -Properties
     let viewModel = EditViewModel()
     let datePicker = UIDatePicker()
     
-    @IBOutlet weak var userImage: UIImageView!
-
+    @IBOutlet weak var userButton: UIButton!
     @IBOutlet weak var birthDateTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var mailTextField: UITextField!
+    
+    //MARK: -Public func
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +32,18 @@ class EditViewController: BaseViewController {
     override func setupData() {
         
     }
+    //MARK: -Config
     override func setupUI() {
         super.setupUI()
-        userImage.layer.cornerRadius = userImage.frame.width/2
-        
+
+        userButton.layer.borderWidth = 10
+        userButton.layer.borderColor = UIColor.lightGray.cgColor
+        userButton.layer.cornerRadius = userButton.frame.width/2
+
         let item = viewModel.user
         if let img = item.photo {
-            userImage.image = UIImage(data: img as Data)
+//            userImage.image = UIImage(data: img as Data)
+            userButton.setImage(UIImage(data: img as Data), for: .normal)
         }
         userNameTextField.text = item.name
         birthDateTextField.text = item.birthDate
@@ -66,9 +73,11 @@ class EditViewController: BaseViewController {
         viewModel.user.email = mailTextField.text ?? "abc@gmail.com"
         viewModel.user.gender = ""
      
-        var data = userImage.image?.pngData()
+//        var data = userImage.image?.pngData()
+        var data = userButton.image(for: .normal)?.pngData()
         if data == nil {
-            data = userImage.image?.jpegData(compressionQuality: 0.9)
+//            data = userImage.image?.jpegData(compressionQuality: 0.9)
+            data = userButton.image(for: .normal)?.jpegData(compressionQuality: 0.9)
         }
         viewModel.user.photo = NSData(data: data!)
 
@@ -78,25 +87,25 @@ class EditViewController: BaseViewController {
     //MARK: -Date picker
     @IBAction func birthDatePicker(_ sender: Any) {
         datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .wheels
         //toolbar
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 300, width: 375, height: 100))
+        let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        view.addSubview(datePicker)
-//        toolbar.sizeThatFits(CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height/3))
-        
+
+
         //bar button
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPickerAction))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let selectButton = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(selectPickerAction))
+        let selectButton = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(selectedPicker))
         toolbar.setItems([cancelButton, spaceButton, selectButton], animated: true)
-       
+
         //add toolbar to textField
         birthDateTextField.inputAccessoryView = toolbar
         //add datePicker to textField
         birthDateTextField.inputView = datePicker
              
     }
-    @objc func selectPickerAction() {
+    @objc func selectedPicker() {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
@@ -104,11 +113,11 @@ class EditViewController: BaseViewController {
         birthDateTextField.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
-    @objc func cancelPickerAction() {
+    @objc func cancelPicker() {
         self.view.endEditing(true)
     }
     
-    //MARK: -picking image
+    //MARK: -Picking image
     @IBAction func pickPhotoImage(_ sender: Any) {
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
@@ -121,7 +130,8 @@ class EditViewController: BaseViewController {
 extension EditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
-            userImage.image = image
+//            userImage.image = image
+            userButton.setImage(image, for: .normal)
         }
         picker.dismiss(animated: true, completion: nil)
     }

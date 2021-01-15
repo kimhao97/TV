@@ -8,7 +8,11 @@
 import UIKit
 
 class MovieCell: UITableViewCell {
-    //closure
+    //MARK: -Properties
+    static let identifier: String = "MovieCell"
+    static func nib() -> UINib {
+        return UINib(nibName: "MovieCell", bundle: nil)
+    }
     var cellAction:((Bool) -> Void)?
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -26,6 +30,7 @@ class MovieCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    //MARK: -Action
     @IBAction func favoriteButton(_ sender: Any) {
         if favoriteButton.currentImage == UIImage(systemName: "star.fill") {
             favoriteButton.setImage(UIImage(systemName: "star"), for: UIControl.State.normal)
@@ -36,6 +41,7 @@ class MovieCell: UITableViewCell {
         }
 
     }
+    //MARK: -Config
     func binding(with cell: MovieCellModel) {
         titleLabel.text = cell.getTitle()
         releaseDateLabel.text = cell.getReleaseDate()

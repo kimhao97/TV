@@ -44,6 +44,9 @@ class UserViewController: BaseViewController {
     override func setupUI() {
         super.setupUI()
         
+        userImage.layer.cornerRadius = userImage.frame.height/2
+        userImage.layer.borderWidth = 10
+            userImage.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     @IBAction func editTouch(_ sender: Any) {

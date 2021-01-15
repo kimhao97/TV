@@ -8,9 +8,6 @@
 import Foundation
 import RealmSwift
 
-//protocol FavoriteViewDataSource: class {
-//    func getData() -> [Movie]
-//}
 class FavoritesViewModel {
     var favorites: [Favorite] = []
 
@@ -25,6 +22,14 @@ class FavoritesViewModel {
             completion(true, "")
         } catch {
             completion(false, "Realm cant fetch data")
+        }
+    }
+    func deleteItem(favorite: Favorite) {
+        let realm = try! Realm()
+        
+        let itemDelete = realm.objects(Favorite.self).filter("id == %@", favorite.id)
+        try! realm.write {
+            realm.delete(itemDelete)
         }
     }
 }

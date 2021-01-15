@@ -7,7 +7,7 @@
 
 import Foundation
 import RealmSwift
-class Setting: Object {
+final class Setting: Object {
     @objc dynamic var nameFilter: String = ""
     @objc dynamic var nameSort: String = ""
     @objc dynamic var filterType: Int = 0
